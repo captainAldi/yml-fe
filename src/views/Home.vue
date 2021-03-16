@@ -98,7 +98,7 @@
             md="3"
           >
             <v-combobox
-              v-model="form.urls"
+              v-model="form.hosts"
               hide-selected
               label="URL / Endpoint"
               placeholder="URL / Endpoint"
@@ -215,7 +215,7 @@
               <td>{{row.item.schedule}}</td>
               <td>
                 <li
-                  v-for="(value, key) of row.item.urls"
+                  v-for="(value, key) of row.item.hosts"
                   :key="key"
                 >
                   {{value}}
@@ -256,7 +256,7 @@ export default {
         name: '',
         id: '',
         schedule: '',
-        urls: [],
+        hosts: [],
         ipv6_monitor: true,
         ipv4_monitor: true,
         mode: 'any'
@@ -271,7 +271,7 @@ export default {
         { text: 'Type', value: 'type' },
         { text: 'Nama', value: 'name' },
         { text: 'Schedule', value: 'schedule' },
-        { text: 'Endpoint', value: 'urls' },
+        { text: 'Endpoint', value: 'hosts' },
         { text: 'Actions', value: 'controls', sortable: false },
       ],
 
@@ -329,10 +329,10 @@ export default {
         formData.append('id', this.form.id)
         formData.append('schedule', this.form.schedule)
 
-        this.form.urls.forEach(element => {
-          formData.append('urls[]', element)
+        this.form.hosts.forEach(element => {
+          formData.append('hosts[]', element)
         });
-        //formData.append('urls[]', this.form.urls)
+        //formData.append('hosts[]', this.form.hosts)
 
         formData.append('ipv6_monitor', this.form.ipv6_monitor)
         formData.append('ipv4_monitor', this.form.ipv4_monitor)
@@ -434,9 +434,10 @@ export default {
 
     resetForm() {
       this.form.type = ''
+      this.form.name = ''
       this.form.id = ''
       this.form.schedule = ''
-      this.form.urls = []
+      this.form.hosts = []
     }
   }
 }
